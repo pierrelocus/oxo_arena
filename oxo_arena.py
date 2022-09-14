@@ -5,6 +5,13 @@ import player2
 
 from time import sleep
 
+def flatten(game):
+    m = []
+    for row in game:
+        for cell in row:
+            m.append(cell)
+    return m
+
 def has_winner(game):
     for index, line in enumerate(game):
         char = line[0]
@@ -37,14 +44,19 @@ if __name__ == '__main__':
         print("")
         print("")
         game = player1.turn(game, 'O')
+        if not any([cell == '.' for cell in flatten(game)]):
+            for line in game:
+                print(line)
+            break
         game = player2.turn(game, 'X')
         if has_winner(game):
             run = False
+            for line in game:
+                print(line)
         if run:
             run = False
             for line in game:
                 for cell in line:
                     if cell == '.':
                         run = True
-        sleep(1)
 
