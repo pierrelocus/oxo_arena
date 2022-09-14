@@ -49,14 +49,9 @@ if __name__ == '__main__':
                 print(line)
             break
         game = player2.turn(game, 'X')
+        run = any([cell == '.' for cell in flatten(game)])
         if has_winner(game):
             run = False
             for line in game:
                 print(line)
-        if run:
-            run = False
-            for line in game:
-                for cell in line:
-                    if cell == '.':
-                        run = True
 
